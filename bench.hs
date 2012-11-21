@@ -1,5 +1,7 @@
 {-# LANGUAGE ForeignFunctionInterface #-}
-{-# LANGUAGE TupleSections, ScopedTypeVariables, TypeFamilies           #-}
+{-# LANGUAGE ScopedTypeVariables      #-}
+{-# LANGUAGE TupleSections            #-}
+{-# LANGUAGE TypeFamilies             #-}
 
 import           Control.Applicative
 import           Control.Monad
@@ -12,7 +14,7 @@ import qualified Data.HashTable.Class  as HTC
 import qualified Data.HashTable.IO     as HTIO
 import           Data.List
 import qualified Data.Map.Strict       as MS
-import Data.Maybe
+import           Data.Maybe
 
 import           Foreign               hiding (void)
 import           Foreign.C
