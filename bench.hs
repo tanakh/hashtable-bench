@@ -17,7 +17,7 @@ import qualified Data.HashTable.IO     as HTIO
 import           Data.List
 import qualified Data.Map.Strict       as MS
 import           Data.Maybe
-import qualified Data.Judy as J
+-- import qualified Data.Judy as J
 
 import           Foreign               hiding (void)
 import           Foreign.C
@@ -48,7 +48,7 @@ main = do
       , bench "hashtables/LinearHashTable" $ whnfIO
         $ wcHTs (undefined :: HTIO.LinearHashTable S.ByteString Int) ws
 
-      , bench "judy" $ whnfIO $ wcJudy ws
+      -- , bench "judy" $ whnfIO $ wcJudy ws
       ]
 
     , bgroup "C++"
@@ -106,6 +106,7 @@ wcHTs _ ws = do
   HTIO.foldM (\s (_, v) -> return $! s + v) 0 ht
 {-# INLINE wcHTs #-}
 
+{-
 -- XXX: This is not correct implementation
 wcJudy :: [S.ByteString] -> IO Int
 wcJudy ws = do
@@ -116,6 +117,7 @@ wcJudy ws = do
     J.insert h (fromMaybe 0 mb + 1) ht
   sum <$> J.elems ht
 {-# INLINE wcJudy #-}
+-}
 
 foreign import ccall wc_std_map   :: Int -> Ptr CString -> IO Int
 foreign import ccall wc_std_uomap :: Int -> Ptr CString -> IO Int
